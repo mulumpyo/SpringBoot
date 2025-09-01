@@ -15,7 +15,7 @@ public class EmpController {
 	
 	@GetMapping("empList")
 	public String empList(Model model) {
-		model.addAttribute("empList", empMapper.selectEmp());
+//		model.addAttribute("empList", empMapper.selectEmp());
 		return "empList";
 	}
 }

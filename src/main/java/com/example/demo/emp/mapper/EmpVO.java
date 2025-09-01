@@ -2,12 +2,16 @@ package com.example.demo.emp.mapper;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Builder
 @Data
-public class EmpVO {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class EmpVO extends SearchVO {
 
 	 private String employeeId;
 	 private String firstName;
