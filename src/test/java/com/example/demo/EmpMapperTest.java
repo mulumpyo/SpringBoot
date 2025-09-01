@@ -17,17 +17,22 @@ public class EmpMapperTest {
 	@Autowired
 	EmpMapper empMapper;
 	
-	@Test @DisplayName("전체조회")
+	@Test @DisplayName("사원 수")
+	public void selectCount() {
+		System.out.println(empMapper.selectCount());
+	}
+	
+//	@Test @DisplayName("전체조회")
 	public void selectEmp() {
 		empMapper.selectEmp().forEach(emp -> System.out.println(emp.getLastName()));
 	}
 	
-	@Test @DisplayName("단건조회")
+//	@Test @DisplayName("단건조회")
 	public void selectEmpById() {
 		System.out.println(empMapper.selectEmpById("100").getFirstName());
 	}
 	
-//	@Test @DisplayName("등록")
+//	@Test @DisplayName("등록") 
 	public void insertEmp() {
 		EmpVO emp = EmpVO
 						.builder()
