@@ -9,4 +9,5 @@ public interface EmpMapper {
 	List<EmpVO> selectEmp();
 	EmpVO selectEmpById(String employeeId);
 	int insertEmp(EmpVO emp);
+	Long selectCount();
 }
