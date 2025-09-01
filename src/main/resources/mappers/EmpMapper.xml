@@ -2,22 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.emp.mapper.EmpMapper">
 
+	<sql id="criteria">
+	    <where>
+	        <if test="firstName != null">
+	        	upper(first_name) like '%' || upper(#{firstName}) || '%'
+	        </if>
+	        
+	        <if test="departmentId != null">
+	        	and department_id = #{departmentId}
+	        </if>
+	    </where>
+	</sql>
+
 	<select id="selectCount" resultType="long">
 		select count(*) from employees
+		<include refid="criteria"></include>
 	</select>
 
 	<select id="selectEmp" resultType="EmpVO">
-      select
-        employee_id,
-        first_name,
-        last_name,
-        email,
-        hire_date,
-        salary,
-        job_id,
-        department_id,
-        manager_id
-      from employees
+		select * from (
+	        select /* +INDEX_ASC(employees emp_email_uk) */
+	        	rownum rn, e.*
+	        from employees e
+			<include refid="criteria"></include>
+		) b where rn between #{first} and #{last}
 	</select>
 	
 	<select id="selectEmpById" resultType="EmpVO">

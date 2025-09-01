@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper // 인터페이스 구현클래스를 생성(싱글톤)해서 스프링 컨테이너 빈 등록
 public interface EmpMapper {
-	List<EmpVO> selectEmp();
+	List<EmpVO> selectEmp(EmpVO emp);
 	EmpVO selectEmpById(String employeeId);
 	int insertEmp(EmpVO emp);
-	Long selectCount();
+	Long selectCount(EmpVO emp);
 }

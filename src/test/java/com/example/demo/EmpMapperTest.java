@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.jupiter.api.DisplayName;
@@ -17,14 +18,19 @@ public class EmpMapperTest {
 	@Autowired
 	EmpMapper empMapper;
 	
-	@Test @DisplayName("사원 수")
+//	@Test @DisplayName("사원 수")
 	public void selectCount() {
-		System.out.println(empMapper.selectCount());
 	}
 	
-//	@Test @DisplayName("전체조회")
+	@Test @DisplayName("전체조회")
 	public void selectEmp() {
-		empMapper.selectEmp().forEach(emp -> System.out.println(emp.getLastName()));
+		EmpVO vo = new EmpVO();
+//		vo.setDepartmentId("50");
+		vo.setFirstName("k");
+		vo.setFirst(1);
+		vo.setLast(20);
+		List<EmpVO> list = empMapper.selectEmp(vo);
+		list.forEach(emp -> System.out.println(emp.getFirstName()));
 	}
 	
 //	@Test @DisplayName("단건조회")
